@@ -1,21 +1,37 @@
-{% extends 'base.html' %}
-{% block title %}Liste{% endblock %}
+{% extends '../base.html' %}
+
+{% block title %}
+pistes - {{ block.super }}
+{% endblock %}
+
 {% block content %}
-<h2>Liste</h2>
-<a href="{{ add_url }}" class="button">➕ Ajouter</a>
-<table>
-  <tr>
-    {% for header in headers %}<th>{{ header }}</th>{% endfor %}
-    <th>Actions</th>
-  </tr>
-  {% for obj in objects %}
-  <tr>
-    {% for field in fields %}<td>{{ obj|get_field:field }}</td>{% endfor %}
-    <td>
-      <a href="{{ edit_url|add:obj.id|stringformat:'s' }}">✏️</a>
-      <a href="{{ delete_url|add:obj.id|stringformat:'s' }}">🗑️</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="page-header">
+    <h2 class="page-title">🛬 Liste des Pistes</h2>
+    <p class="page-subtitle">{{ pistes|length }} piste{{ pistes|length|pluralize }} enregistré{{ pistes|length|pluralize }}</p>
+</div>
+
+<div class="grid">
+    {% for piste in pistes %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="title">{{ piste.numero }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="info">
+                <span class="info-label">Aéroport :</span>
+                <span class="info-text">{{ piste.aeroport.nom }}</span>
+                <span class="info-label">Longueur : </span>
+                <span class="info-text">{{ piste.longueur }}</span>
+            </div>
+        </div>
+        <!-- <div class="piste-card-footer">
+            <a href="#" class="btn btn-primary btn-details">Voir détails</a>
+        </div> -->
+    </div>
+    {% empty %}
+    <div class="no-data">
+        <p class="no-data-message">Aucune piste enregistrée pour le moment.</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

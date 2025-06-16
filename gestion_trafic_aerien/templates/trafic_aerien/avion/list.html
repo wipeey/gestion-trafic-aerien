@@ -6,22 +6,22 @@ Avions - {{ block.super }}
 
 {% block content %}
 <div class="page-header">
-    <h2 class="page-title">✈️ Liste des Avions</h2>
+    <h2 class="page-title">🚀 Liste des Avions</h2>
     <p class="page-subtitle">{{ avions|length }} aéroport{{ avions|length|pluralize }} enregistré{{ avions|length|pluralize }}</p>
 </div>
 
-<div class="avions-grid">
+<div class="grid">
     {% for avion in avions %}
-    <div class="aeroport-card">
-        <div class="aeroport-card-header">
-            <h3 class="aeroport-nom">{{ avion.nom }}</h3>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="title">{{ avion.nom }}</h3>
         </div>
-        <div class="aeroport-card-body">
-            <div class="aeroport-info">
-                <span class="aeroport-info-label">Modèle :</span>
-                <span class="aeroport-pays">{{ avion.type_avion }}</span>
-                <span class="aeroport-info-label">Compagnie : </span>
-                <span class="aeroport-pays">{{ avion.compagnie.nom }}</span>
+        <div class="card-body">
+            <div class="info">
+                <span class="info-label">Modèle :</span>
+                <span class="info-text">{{ avion.type_avion }}</span>
+                <span class="info-label">Compagnie : </span>
+                <span class="info-text">{{ avion.compagnie.nom }}</span>
             </div>
         </div>
         <!-- <div class="avion-card-footer">
@@ -30,7 +30,7 @@ Avions - {{ block.super }}
     </div>
     {% empty %}
     <div class="no-data">
-        <p class="no-data-message">Aucun aéroport enregistré pour le moment.</p>
+        <p class="no-data-message">Aucun avion enregistré pour le moment.</p>
     </div>
     {% endfor %}
 </div>

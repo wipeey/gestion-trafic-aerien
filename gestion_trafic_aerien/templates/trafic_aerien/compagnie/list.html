@@ -1,21 +1,37 @@
-{% extends 'base.html' %}
-{% block title %}Liste{% endblock %}
+{% extends '../base.html' %}
+
+{% block title %}
+Compagnies - {{ block.super }}
+{% endblock %}
+
 {% block content %}
-<h2>Liste</h2>
-<a href="{{ add_url }}" class="button">➕ Ajouter</a>
-<table>
-  <tr>
-    {% for header in headers %}<th>{{ header }}</th>{% endfor %}
-    <th>Actions</th>
-  </tr>
-  {% for obj in objects %}
-  <tr>
-    {% for field in fields %}<td>{{ obj|get_field:field }}</td>{% endfor %}
-    <td>
-      <a href="{{ edit_url|add:obj.id|stringformat:'s' }}">✏️</a>
-      <a href="{{ delete_url|add:obj.id|stringformat:'s' }}">🗑️</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="page-header">
+    <h2 class="page-title">🏢 Liste des Compagnies</h2>
+    <p class="page-subtitle">{{ compagnies|length }} aéroport{{ compagnies|length|pluralize }} enregistré{{ compagnies|length|pluralize }}</p>
+</div>
+
+<div class="grid">
+    {% for compagnie in compagnies %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="title">{{ compagnie.nom }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="info">
+                <span class="info-label">Description :</span>
+                <span class="info-text">{{ compagnie.description }}</span>
+                <span class="info-label">Pays : </span>
+                <span class="info-text">{{ compagnie.nom }}</span>
+            </div>
+        </div>
+        <!-- <div class="compagnie-card-footer">
+            <a href="#" class="btn btn-primary btn-details">Voir détails</a>
+        </div> -->
+    </div>
+    {% empty %}
+    <div class="no-data">
+        <p class="no-data-message">Aucune compagnie enregistrée pour le moment.</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

@@ -1,21 +1,47 @@
-{% extends 'base.html' %}
-{% block title %}Liste{% endblock %}
+{% extends '../base.html' %}
+
+{% block title %}
+Vols - {{ block.super }}
+{% endblock %}
+
 {% block content %}
-<h2>Liste</h2>
-<a href="{{ add_url }}" class="button">➕ Ajouter</a>
-<table>
-  <tr>
-    {% for header in headers %}<th>{{ header }}</th>{% endfor %}
-    <th>Actions</th>
-  </tr>
-  {% for obj in objects %}
-  <tr>
-    {% for field in fields %}<td>{{ obj|get_field:field }}</td>{% endfor %}
-    <td>
-      <a href="{{ edit_url|add:obj.id|stringformat:'s' }}">✏️</a>
-      <a href="{{ delete_url|add:obj.id|stringformat:'s' }}">🗑️</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="page-header">
+    <h2 class="page-title">🎫 Liste des Vols</h2>
+    <p class="page-subtitle">{{ vols|length }} vol{{ vols|length|pluralize }} enregistré{{ vols|length|pluralize }}</p>
+</div>
+
+<div class="grid">
+    {% for vol in vols %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="title">N°{{ vol.id }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="info">
+                <span class="info-label">Avion :</span>
+                <span class="info-text">{{ vol.avion.nom }}</span>
+
+                <span class="info-label">Pilote :</span>
+                <span class="info-text">{{ vol.pilote }}</span>
+
+                <span class="info-label">Départ :</span>
+                <span class="info-text">
+                    À {{ vol.aeroport_depart.nom }} – 
+                    {{ vol.date_heure_depart|date:"d/m/Y H:i" }}
+                </span>
+
+                <span class="info-label">Arrivée :</span>
+                <span class="info-text">
+                    À {{ vol.aeroport_arrivee.nom }} – 
+                    {{ vol.date_heure_arrivee|date:"d/m/Y H:i" }}
+                </span>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="no-data">
+        <p class="no-data-message">Aucun vol enregistré pour le moment.</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

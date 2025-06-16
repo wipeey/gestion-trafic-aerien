@@ -1,21 +1,39 @@
-{% extends 'base.html' %}
-{% block title %}Liste{% endblock %}
+{% extends '../base.html' %}
+
+{% block title %}
+Modèles - {{ block.super }}
+{% endblock %}
+
 {% block content %}
-<h2>Liste</h2>
-<a href="{{ add_url }}" class="button">➕ Ajouter</a>
-<table>
-  <tr>
-    {% for header in headers %}<th>{{ header }}</th>{% endfor %}
-    <th>Actions</th>
-  </tr>
-  {% for obj in objects %}
-  <tr>
-    {% for field in fields %}<td>{{ obj|get_field:field }}</td>{% endfor %}
-    <td>
-      <a href="{{ edit_url|add:obj.id|stringformat:'s' }}">✏️</a>
-      <a href="{{ delete_url|add:obj.id|stringformat:'s' }}">🗑️</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="page-header">
+    <h2 class="page-title">✈️ Liste des Modèles</h2>
+    <p class="page-subtitle">{{ types_avion|length }} modèle{{ types_avion|length|pluralize }} enregistré{{ types_avion|length|pluralize }}</p>
+</div>
+
+<div class="grid">
+    {% for type_avion in types_avion %}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="title">{{ type_avion.modele }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="info">
+                <span class="info-label">Marque :</span>
+                <span class="info-text">{{ type_avion.marque }}</span>
+                <span class="info-label">Description : </span>
+                <span class="info-text">{{ type_avion.description }}</span>
+                <span class="info-label">Longueur de piste : </span>
+                <span class="info-text">{{ type_avion.longueur_piste_necessaire }}</span>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="#" class="btn btn-primary">Afficher</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="no-data">
+        <p class="no-data-message">Aucun modèle enregistré pour le moment.</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
