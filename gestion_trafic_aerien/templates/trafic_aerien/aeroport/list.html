@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Liste des Aéroports</h2>
+<a href="{% url 'aeroport_add' %}" class="button">➕ Ajouter un aéroport</a>
+
+<ul>
+  {% for aeroport in aeroports %}
+    <li>
+      {{ aeroport.nom }} - {{ aeroport.pays }}
+      <a href="{% url 'aeroport_edit' aeroport.id %}">✏️</a>
+      <a href="{% url 'aeroport_delete' aeroport.id %}">🗑️</a>
+    </li>
+  {% empty %}
+    <li>Aucun aéroport trouvé.</li>
+  {% endfor %}
+</ul>
+{% endblock %}
