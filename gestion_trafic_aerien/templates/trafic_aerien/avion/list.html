@@ -1,21 +1,37 @@
-{% extends 'base.html' %}
-{% block title %}Liste{% endblock %}
+{% extends '../base.html' %}
+
+{% block title %}
+Avions - {{ block.super }}
+{% endblock %}
+
 {% block content %}
-<h2>Liste</h2>
-<a href="{{ add_url }}" class="button">➕ Ajouter</a>
-<table>
-  <tr>
-    {% for header in headers %}<th>{{ header }}</th>{% endfor %}
-    <th>Actions</th>
-  </tr>
-  {% for obj in objects %}
-  <tr>
-    {% for field in fields %}<td>{{ obj|get_field:field }}</td>{% endfor %}
-    <td>
-      <a href="{{ edit_url|add:obj.id|stringformat:'s' }}">✏️</a>
-      <a href="{{ delete_url|add:obj.id|stringformat:'s' }}">🗑️</a>
-    </td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="page-header">
+    <h2 class="page-title">✈️ Liste des Avions</h2>
+    <p class="page-subtitle">{{ avions|length }} aéroport{{ avions|length|pluralize }} enregistré{{ avions|length|pluralize }}</p>
+</div>
+
+<div class="avions-grid">
+    {% for avion in avions %}
+    <div class="aeroport-card">
+        <div class="aeroport-card-header">
+            <h3 class="aeroport-nom">{{ avion.nom }}</h3>
+        </div>
+        <div class="aeroport-card-body">
+            <div class="aeroport-info">
+                <span class="aeroport-info-label">Modèle :</span>
+                <span class="aeroport-pays">{{ avion.type_avion }}</span>
+                <span class="aeroport-info-label">Compagnie : </span>
+                <span class="aeroport-pays">{{ avion.compagnie.nom }}</span>
+            </div>
+        </div>
+        <!-- <div class="avion-card-footer">
+            <a href="#" class="btn btn-primary btn-details">Voir détails</a>
+        </div> -->
+    </div>
+    {% empty %}
+    <div class="no-data">
+        <p class="no-data-message">Aucun aéroport enregistré pour le moment.</p>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
