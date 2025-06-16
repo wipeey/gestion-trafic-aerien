@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Liste{% endblock %}
+{% block content %}
+<h2>Liste</h2>
+<a href="{{ add_url }}" class="button">➕ Ajouter</a>
+<table>
+  <tr>
+    {% for header in headers %}<th>{{ header }}</th>{% endfor %}
+    <th>Actions</th>
+  </tr>
+  {% for obj in objects %}
+  <tr>
+    {% for field in fields %}<td>{{ obj|get_field:field }}</td>{% endfor %}
+    <td>
+      <a href="{{ edit_url|add:obj.id|stringformat:'s' }}">✏️</a>
+      <a href="{{ delete_url|add:obj.id|stringformat:'s' }}">🗑️</a>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
