@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Trafic Aérien - SAE2.03{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-flex">
+      <h1><a href="{% url 'index' %}">🛩️ SAE2.03 - Trafic Aérien</a></h1>
+      <nav class="navbar">
+        <a href="{% url 'aeroport_list' %}">✈️ Aéroports</a>
+        <a href="{% url 'piste_list' %}">🛬 Pistes</a>
+        <a href="{% url 'compagnie_list' %}">🏢 Compagnies</a>
+        <a href="{% url 'typeavion_list' %}">🛩️ Types d'avions</a>
+        <a href="{% url 'avion_list' %}">🚀 Avions</a>
+        <a href="{% url 'vol_list' %}">📅 Vols</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content container">
+    {% block content %}
+    <!-- Contenu spécifique à chaque page -->
+    {% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 - Projet SAE2.03 - Tous droits réservés</p>
+    </div>
+  </footer>
+
+</body>
+</html>
