@@ -6,4 +6,4 @@ def index(request):
 
 def aeroport_list(request):
     aeroports = Aeroport.objects.all()
-    return render(request, 'trafic_aerien/aeroport-list.html', {'aeroports': aeroports})
+    return render(request, 'trafic_aerien/aeroport/list.html', {'aeroports': aeroports})
