@@ -1,0 +1,7 @@
+Bienvenue sur le site de gestion de trafic aérien !
+
+{% for compagnie in compagnies %}
+<h4>COMPAGNIE: {{ compagnie.nom }}</h4>
+<h5>PAYS: {{ compagnie.pays_rattachement }}</h5>
+<p>DESCRIPTION: {{ compagnie.description }}</p>
+{% endfor %}
