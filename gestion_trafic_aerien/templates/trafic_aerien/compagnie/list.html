@@ -7,7 +7,7 @@ Compagnies - {{ block.super }}
 {% block content %}
 <div class="page-header">
     <h2 class="page-title">🏢 Liste des Compagnies</h2>
-    <p class="page-subtitle">{{ compagnies|length }} aéroport{{ compagnies|length|pluralize }} enregistré{{ compagnies|length|pluralize }}</p>
+    <p class="page-subtitle">{{ compagnies|length }} compagnie{{ compagnies|length|pluralize }} enregistrée{{ compagnies|length|pluralize }}</p>
     <div class="page-actions">
         <a href="{% url 'compagnie_create' %}" class="btn btn-add">Ajouter une Compagnie</a>
     </div>
@@ -24,7 +24,7 @@ Compagnies - {{ block.super }}
                 <span class="info-label">Description :</span>
                 <span class="info-text">{{ compagnie.description }}</span>
                 <span class="info-label">Pays : </span>
-                <span class="info-text">{{ compagnie.nom }}</span>
+                <span class="info-text">{{ compagnie.pays_rattachement }}</span>
             </div>
         </div>
         <div class="card-footer">

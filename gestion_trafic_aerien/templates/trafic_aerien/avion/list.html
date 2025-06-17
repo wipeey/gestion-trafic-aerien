@@ -7,7 +7,7 @@ Avions - {{ block.super }}
 {% block content %}
 <div class="page-header">
     <h2 class="page-title">🚀 Liste des Avions</h2>
-    <p class="page-subtitle">{{ avions|length }} aéroport{{ avions|length|pluralize }} enregistré{{ avions|length|pluralize }}</p>
+    <p class="page-subtitle">{{ avions|length }} avion{{ avions|length|pluralize }} enregistré{{ avions|length|pluralize }}</p>
     <div class="page-actions">
         <a href="{% url 'avion_create' %}" class="btn btn-add">Ajouter un Avion</a>
     </div>
