@@ -1,2 +1,4 @@
 django
+gunicorn
 mysqlclient
+psycopg2-binary
