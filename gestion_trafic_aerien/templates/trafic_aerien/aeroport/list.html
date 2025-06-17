@@ -8,6 +8,9 @@ Aéroports - {{ block.super }}
 <div class="page-header">
     <h2 class="page-title">✈️ Liste des Aéroports</h2>
     <p class="page-subtitle">{{ aeroports|length }} aéroport{{ aeroports|length|pluralize }} enregistré{{ aeroports|length|pluralize }}</p>
+    <div class="page-actions">
+        <a href="{% url 'aeroport_create' %}" class="btn btn-add">Ajouter un Aéroport</a>
+    </div>
 </div>
 
 <div class="grid">

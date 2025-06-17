@@ -8,6 +8,9 @@ Compagnies - {{ block.super }}
 <div class="page-header">
     <h2 class="page-title">🏢 Liste des Compagnies</h2>
     <p class="page-subtitle">{{ compagnies|length }} aéroport{{ compagnies|length|pluralize }} enregistré{{ compagnies|length|pluralize }}</p>
+    <div class="page-actions">
+        <a href="{% url 'compagnie_create' %}" class="btn btn-add">Ajouter une Compagnie</a>
+    </div>
 </div>
 
 <div class="grid">

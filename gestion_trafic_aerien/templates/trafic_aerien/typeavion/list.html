@@ -8,6 +8,9 @@ Modèles - {{ block.super }}
 <div class="page-header">
     <h2 class="page-title">✈️ Liste des Modèles</h2>
     <p class="page-subtitle">{{ types_avion|length }} modèle{{ types_avion|length|pluralize }} enregistré{{ types_avion|length|pluralize }}</p>
+    <div class="page-actions">
+        <a href="{% url 'type_avion_create' %}" class="btn btn-add">Ajouter un Modèle</a>
+    </div>
 </div>
 
 <div class="grid">

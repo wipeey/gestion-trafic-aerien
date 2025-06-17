@@ -38,6 +38,7 @@ urlpatterns = [
     # ===== VOL URLS =====
     path('vol/liste', views.vol_list, name="vol_list"),
     path('vol/creer/', views.vol_create, name="vol_create"),
+    path('vol/importer/', views.vol_import, name="vol_import"),
     path('vol/<int:pk>/modifier/', views.vol_edit, name="vol_edit"),
     path('vol/<int:pk>/supprimer/', views.vol_delete, name="vol_delete"),
 ]

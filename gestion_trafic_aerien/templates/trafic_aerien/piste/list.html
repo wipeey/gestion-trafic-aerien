@@ -8,6 +8,9 @@ Pistes - {{ block.super }}
 <div class="page-header">
     <h2 class="page-title">🛬 Liste des Pistes</h2>
     <p class="page-subtitle">{{ pistes|length }} piste{{ pistes|length|pluralize }} enregistrée{{ pistes|length|pluralize }}</p>
+    <div class="page-actions">
+        <a href="{% url 'piste_create' %}" class="btn btn-add">Ajouter une Piste</a>
+    </div>
 </div>
 
 <div class="grid">

@@ -8,6 +8,10 @@ Vols - {{ block.super }}
 <div class="page-header">
     <h2 class="page-title">🎫 Liste des Vols</h2>
     <p class="page-subtitle">{{ vols|length }} vol{{ vols|length|pluralize }} enregistré{{ vols|length|pluralize }}</p>
+    <div class="page-actions">
+        <a href="{% url 'vol_create' %}" class="btn btn-add">Ajouter un Vol</a>
+        <a href="{% url 'vol_import' %}" class="btn btn-secondary">Importer des Vols</a>
+    </div>
 </div>
 
 <div class="grid">

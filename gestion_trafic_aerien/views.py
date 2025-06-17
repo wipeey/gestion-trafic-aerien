@@ -310,3 +310,6 @@ def vol_delete(request, pk):
     vol = get_object_or_404(Vol, pk=pk)
     vol.delete()
     return redirect('vol_list')
+
+def vol_import(request):
+    return redirect('vol_list')
