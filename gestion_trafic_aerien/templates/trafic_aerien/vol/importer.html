@@ -1,0 +1,181 @@
+{% extends '../base.html' %}
+{% block title %}
+Import CSV - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2 class="page-title">📂 Import de Vols via CSV</h2>
+    <p class="page-subtitle">Importez plusieurs vols en une seule fois</p>
+</div>
+
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <h2>Télécharger un fichier CSV</h2>
+        </div>
+        
+        <div class="form-body">
+            <!-- Messages d'erreur/succès -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <!-- Instructions -->
+            <div class="csv-instructions">
+                <h4>Format CSV requis :</h4>
+                <p>Votre fichier CSV doit contenir les colonnes suivantes dans cet ordre :</p>
+                <code>avion_id,pilote,aeroport_depart_id,date_heure_depart,aeroport_arrivee_id,date_heure_arrivee</code>
+                
+                <h4>Exemple :</h4>
+                <pre class="csv-example">avion_id,pilote,aeroport_depart_id,date_heure_depart,aeroport_arrivee_id,date_heure_arrivee
+1,Capitaine Dupont,1,2024-12-25 14:30:00,2,2024-12-25 16:45:00
+2,Jean Martin,2,2024-12-26 09:15:00,3,2024-12-26 11:20:00</pre>
+                
+                <h4>Notes importantes :</h4>
+                <ul>
+                    <li>Les dates doivent être au format : <strong>YYYY-MM-DD HH:MM:SS</strong></li>
+                    <li>Les ID doivent correspondre aux avions et aéroports existants</li>
+                    <li>Toutes les vérifications de compatibilité et disponibilité des pistes seront appliquées</li>
+                    <li>En cas d'erreur, le numéro de ligne sera indiqué</li>
+                </ul>
+            </div>
+            
+            <!-- Formulaire d'upload -->
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.csv_file.id_for_label }}">{{ form.csv_file.label }}</label>
+                    {{ form.csv_file }}
+                    {% if form.csv_file.help_text %}
+                        <small class="form-help">{{ form.csv_file.help_text }}</small>
+                    {% endif %}
+                    {% if form.csv_file.errors %}
+                        <ul class="errorlist">
+                            {% for error in form.csv_file.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Importer les Vols</button>
+                    <a href="{% url 'vol_list' %}" class="btn btn-secondary">Annuler</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Styles pour les messages d'alerte */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid;
+}
+
+.alert-error {
+    background-color: #fdf2f2;
+    border-left-color: #e74c3c;
+    color: #c0392b;
+}
+
+.alert-success {
+    background-color: #f0f9f4;
+    border-left-color: #27ae60;
+    color: #196f3d;
+}
+
+.alert-warning {
+    background-color: #fef9e7;
+    border-left-color: #f39c12;
+    color: #b7950b;
+}
+
+/* Styles pour les instructions CSV */
+.csv-instructions {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #2a5298;
+    margin-bottom: 2rem;
+}
+
+.csv-instructions h4 {
+    color: #2a5298;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.csv-instructions h4:first-child {
+    margin-top: 0;
+}
+
+.csv-instructions code {
+    background: #e9ecef;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    display: block;
+    margin: 0.5rem 0;
+    word-wrap: break-word;
+}
+
+.csv-example {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 1rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+}
+
+.csv-instructions ul {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.csv-instructions li {
+    margin-bottom: 0.25rem;
+}
+
+/* Style pour l'aide du formulaire */
+.form-help {
+    color: #6c757d;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive pour les instructions */
+@media (max-width: 768px) {
+    .csv-instructions {
+        padding: 1rem;
+    }
+    
+    .csv-example {
+        font-size: 0.75rem;
+        padding: 0.75rem;
+    }
+    
+    .csv-instructions code {
+        font-size: 0.8rem;
+    }
+}
+</style>
+{% endblock %}

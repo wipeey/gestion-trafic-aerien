@@ -1,6 +1,7 @@
 from datetime import timedelta
 from django import forms
 from django.db.models import Q
+from django.utils import timezone
 from .models import Aeroport, Piste, Compagnie, TypeAvion, Avion, Vol
 
 
@@ -399,7 +400,6 @@ class VolForm(forms.ModelForm):
 
         return cleaned_data
 
-
 # Formulaires de recherche/filtrage
 class VolSearchForm(forms.Form):
     aeroport_depart = forms.ModelChoiceField(
@@ -435,4 +435,13 @@ class VolSearchForm(forms.Form):
             'type': 'date'
         }),
         label="Jusqu'au"
+    )
+
+class CSVUploadForm(forms.Form):
+    csv_file = forms.FileField(
+        label='Fichier CSV',
+        widget=forms.FileInput(attrs={
+            'class': 'form-control',
+            'accept': '.csv'
+        })
     )

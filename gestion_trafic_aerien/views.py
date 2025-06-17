@@ -1,13 +1,17 @@
+import csv
+import io
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.db import transaction
 from django.db.models import Q
 from django.core.paginator import Paginator
 from .models import Aeroport, Avion, Compagnie, Piste, TypeAvion, Vol
+from .utils import VolCSVValidator
 from .forms import (
     AeroportForm, AvionForm, CompagnieForm, PisteForm, 
-    TypeAvionForm, VolForm, VolSearchForm
+    TypeAvionForm, VolForm, VolSearchForm, CSVUploadForm
 )
-
 
 def index(request):
     return render(request, 'trafic_aerien/index.html')
@@ -287,7 +291,6 @@ def vol_create(request):
         'title': 'Créer un vol'
     })
 
-
 def vol_edit(request, pk):
     vol = get_object_or_404(Vol, pk=pk)
     
@@ -312,4 +315,70 @@ def vol_delete(request, pk):
     return redirect('vol_list')
 
 def vol_import(request):
-    return redirect('vol_list')
+    if request.method == 'POST':
+        form = CSVUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            csv_file = request.FILES['csv_file']
+            
+            # Vérifier que c'est un fichier CSV
+            if not csv_file.name.endswith('.csv'):
+                messages.error(request, 'Le fichier doit être au format CSV.')
+                return render(request, 'trafic_aerien/vol/importer.html', {'form': form})
+            
+            try:
+                # Lire le fichier CSV
+                file_data = csv_file.read().decode('utf-8')
+                reader = csv.DictReader(io.StringIO(file_data))
+                
+                # Vérifier les colonnes requises
+                colonnes_requises = [
+                    'avion_id', 'pilote', 'aeroport_depart_id',
+                    'date_heure_depart', 'aeroport_arrivee_id', 'date_heure_arrivee'
+                ]
+                
+                if not all(col in reader.fieldnames for col in colonnes_requises):
+                    messages.error(request, f'Colonnes manquantes. Colonnes requises: {", ".join(colonnes_requises)}')
+                    return render(request, 'trafic_aerien/vol/importer.html', {'form': form})
+                
+                # Convertir en liste pour pouvoir l'itérer plusieurs fois
+                vols_data = list(reader)
+                
+                # Valider tous les vols
+                validator = VolCSVValidator()
+                vols_valides = []
+                
+                for i, vol_data in enumerate(vols_data):
+                    ligne_numero = i + 2  # +2 car ligne 1 = headers, ligne 2 = première data
+                    if validator.validate_vol_data(vol_data, ligne_numero, vols_data):
+                        vols_valides.append(vol_data)
+                
+                # Si erreurs, les afficher
+                if validator.errors:
+                    for error in validator.errors:
+                        messages.error(request, error)
+                    return render(request, 'trafic_aerien/vol/importer.html', {'form': form})
+                
+                # Si tout est valide, créer les vols
+                vols_crees = 0
+                with transaction.atomic():
+                    for vol_data in vols_valides:
+                        Vol.objects.create(
+                            avion_id=vol_data['avion_id'],
+                            pilote=vol_data['pilote'],
+                            aeroport_depart_id=vol_data['aeroport_depart_id'],
+                            date_heure_depart=datetime.strptime(vol_data['date_heure_depart'], '%Y-%m-%d %H:%M:%S'),
+                            aeroport_arrivee_id=vol_data['aeroport_arrivee_id'],
+                            date_heure_arrivee=datetime.strptime(vol_data['date_heure_arrivee'], '%Y-%m-%d %H:%M:%S')
+                        )
+                        vols_crees += 1
+                
+                messages.success(request, f'{vols_crees} vol(s) importé(s) avec succès!')
+                return redirect('vol_list')  # Rediriger vers la liste des vols
+                
+            except Exception as e:
+                messages.error(request, f'Erreur lors de la lecture du fichier: {str(e)}')
+    
+    else:
+        form = CSVUploadForm()
+    
+    return render(request, 'trafic_aerien/vol/importer.html', {'form': form})
