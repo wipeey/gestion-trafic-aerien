@@ -1,0 +1,25 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block custom_css %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
+</head>
+{% block content %}
+<div class="form-container">
+    <div class="form-card">
+        <div class="form-header">
+            <h2>{% if form.instance.pk %}Modifier{% else %}Ajouter{% endif %} un Avion</h2>
+        </div>
+        
+        <form method="post" class="form-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a href="{% url 'avion_list' %}" class="btn btn-secondary">Retour</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

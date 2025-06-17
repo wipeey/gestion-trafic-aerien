@@ -7,7 +7,7 @@ pistes - {{ block.super }}
 {% block content %}
 <div class="page-header">
     <h2 class="page-title">🛬 Liste des Pistes</h2>
-    <p class="page-subtitle">{{ pistes|length }} piste{{ pistes|length|pluralize }} enregistré{{ pistes|length|pluralize }}</p>
+    <p class="page-subtitle">{{ pistes|length }} piste{{ pistes|length|pluralize }} enregistrée{{ pistes|length|pluralize }}</p>
 </div>
 
 <div class="grid">
@@ -24,9 +24,10 @@ pistes - {{ block.super }}
                 <span class="info-text">{{ piste.longueur }}</span>
             </div>
         </div>
-        <!-- <div class="piste-card-footer">
-            <a href="#" class="btn btn-primary btn-details">Voir détails</a>
-        </div> -->
+        <div class="card-footer">
+            <a href="{% url 'piste_edit' pk=piste.pk %}" class="btn btn-primary">Modifier</a>
+            <a href="{% url 'piste_delete' pk=piste.pk %}" class="btn btn-delete">Supprimer</a>
+        </div>
     </div>
     {% empty %}
     <div class="no-data">

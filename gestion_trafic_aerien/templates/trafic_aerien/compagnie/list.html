@@ -24,9 +24,10 @@ Compagnies - {{ block.super }}
                 <span class="info-text">{{ compagnie.nom }}</span>
             </div>
         </div>
-        <!-- <div class="compagnie-card-footer">
-            <a href="#" class="btn btn-primary btn-details">Voir détails</a>
-        </div> -->
+        <div class="card-footer">
+            <a href="{% url 'compagnie_edit' pk=compagnie.pk %}" class="btn btn-primary">Modifier</a>
+            <a href="{% url 'compagnie_delete' pk=compagnie.pk %}" class="btn btn-delete">Supprimer</a>
+        </div>
     </div>
     {% empty %}
     <div class="no-data">

@@ -22,9 +22,10 @@ Aéroports - {{ block.super }}
                 <span class="info-text">{{ aeroport.pays }}</span>
             </div>
         </div>
-        <!-- <div class="aeroport-card-footer">
-            <a href="#" class="btn btn-primary btn-details">Voir détails</a>
-        </div> -->
+        <div class="card-footer">
+            <a href="{% url 'aeroport_edit' pk=aeroport.pk %}" class="btn btn-primary">Modifier</a>
+            <a href="{% url 'aeroport_delete' pk=aeroport.pk %}" class="btn btn-delete">Supprimer</a>
+        </div>
     </div>
     {% empty %}
     <div class="no-data">
