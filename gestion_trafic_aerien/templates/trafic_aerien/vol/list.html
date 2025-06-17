@@ -14,7 +14,7 @@ Vols - {{ block.super }}
     {% for vol in vols %}
     <div class="card">
         <div class="card-header">
-            <h3 class="title">N°{{ vol.id }}</h3>
+            <h3 class="title">{{ vol.aeroport_depart.pays }} - {{ vol.aeroport_arrivee.pays }}</h3>
         </div>
         <div class="card-body">
             <div class="info">
@@ -26,16 +26,22 @@ Vols - {{ block.super }}
 
                 <span class="info-label">Départ :</span>
                 <span class="info-text">
-                    À {{ vol.aeroport_depart.nom }} – 
-                    {{ vol.date_heure_depart|date:"d/m/Y H:i" }}
+                    De {{ vol.aeroport_depart.nom }}
+                </br> 
+                    À {{ vol.date_heure_depart|date:"d/m/Y H:i" }}
                 </span>
 
                 <span class="info-label">Arrivée :</span>
                 <span class="info-text">
-                    À {{ vol.aeroport_arrivee.nom }} – 
-                    {{ vol.date_heure_arrivee|date:"d/m/Y H:i" }}
+                    Vers {{ vol.aeroport_arrivee.nom }} 
+                </br>
+                    À {{ vol.date_heure_arrivee|date:"d/m/Y H:i" }}
                 </span>
             </div>
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'vol_edit' pk=vol.pk %}" class="btn btn-primary">Modifier</a>
+            <a href="{% url 'vol_delete' pk=vol.pk %}" class="btn btn-delete">Supprimer</a>
         </div>
     </div>
     {% empty %}
