@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="Gestion du trafic aérien entre des aéroports" company="" webLink="http://" view-date="2025-06-04" view-index="0" gantt-divider-location="875" resource-divider-location="494" version="3.3.3309" locale="fr_FR">
+    <description/>
+    <view zooming-state="default:0" id="gantt-chart">
+        <field id="tpd3" name="Nom" width="467" order="0"/>
+        <field id="tpd4" name="Date de début" width="86" order="1"/>
+        <field id="tpd5" name="Date de fin" width="78" order="2"/>
+        <field id="tpd13" name="Ressources" width="162" order="3"/>
+        <field id="tpd6" name="Durée" width="20" order="4"/>
+        <field id="tpd9" name="Prédécesseurs" width="46" order="5"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <option id="color.recent"><![CDATA[#ff0000]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nom" width="467" order="0"/>
+        <field id="1" name="Rôle par défaut" width="23" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="181" uid="4546c160760b4788b86bf17085acfc8c" name="Début de projet" color="#8cb6ce" meeting="true" start="2025-06-05" duration="0" complete="0" thirdDate="2025-06-02" thirdDate-constraint="0" expand="true">
+            <depend id="30" type="2" difference="0" hardness="Strong"/>
+            <depend id="56" type="2" difference="0" hardness="Strong"/>
+            <depend id="153" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="56" uid="49cfeb583a674793983a4bd0f236c6d6" name="Management et coordination du projet" color="#8cb6ce" meeting="false" start="2025-06-05" duration="9" complete="62" thirdDate="2025-06-06" thirdDate-constraint="0" expand="true">
+            <depend id="182" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="23" uid="a4b78602c49d4d52ba5ba11e6b4cabe9" name="Développement Back-end" color="#8cb6ce" meeting="false" start="2025-06-05" duration="7" complete="34" thirdDate="2025-06-06" thirdDate-constraint="0" expand="true">
+            <task id="24" uid="71f896ccd4c0451cb66c8f306cce6b3f" name="Infra BDD" color="#8cb6ce" meeting="false" start="2025-06-05" duration="5" complete="52" thirdDate="2025-06-06" thirdDate-constraint="0" expand="true">
+                <task id="153" uid="09fab260e89d4f2d93450089187ee590" name="Schéma de données, création BDD en SQL" color="#8cb6ce" meeting="false" start="2025-06-05" duration="2" complete="100" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="278" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="278" uid="2a9299ceb62e4fef96c053e7e2c72a87" name="Administration serveur, Conteneurisation et Déploiement Nginx" color="#8cb6ce" meeting="false" start="2025-06-09" duration="1" complete="80" thirdDate="2025-06-02" thirdDate-constraint="0" expand="true">
+                    <depend id="59" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="59" uid="5c680fb90fda454f81f8f055ec5b130d" name="Gérer la fonction d'affichage de la classe" color="#8cb6ce" meeting="false" start="2025-06-10" duration="1" complete="100" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="65" type="2" difference="0" hardness="Strong"/>
+                    <depend id="107" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="107" uid="33035fd4c74e4640920a5bbad08f10ed" name="Gestion des disponibilités de pistes" color="#8cb6ce" meeting="false" start="2025-06-11" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="108" type="1" difference="0" hardness="Strong"/>
+                    <depend id="113" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="108" uid="a5c7a7f9f282400a96e19ac59bc95d66" name="Proposition automatique d'un nouvel horaire en cas d'indisponibilité" color="#8cb6ce" meeting="false" start="2025-06-11" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true"/>
+                <task id="65" uid="15eecd5941904db2a73007e3db8eca91" name="Ecriture de la documentation" color="#8cb6ce" meeting="false" start="2025-06-11" duration="1" complete="36" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="66" type="1" difference="0" hardness="Strong"/>
+                </task>
+                <task id="66" uid="1ea535ed0dc74068925cea3ac10e0ff1" name="Validation avec le reste de l'équipe" color="#8cb6ce" meeting="false" start="2025-06-11" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="97" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="33" uid="20a18a3ca93443ff91434944e5f2d19c" name="Possibilité d'insertion de plusieurs vols à travers un fichier csv" color="#8cb6ce" meeting="false" start="2025-06-12" duration="2" complete="0" thirdDate="2025-06-10" thirdDate-constraint="0" expand="true">
+                <task id="113" uid="9b431508c03e44a8919166423d6d370b" name="Ecriture de la documentation du fichier csv" color="#8cb6ce" meeting="false" start="2025-06-12" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="114" type="1" difference="0" hardness="Strong"/>
+                </task>
+                <task id="114" uid="75b91e514221403e9c36578ecb9d3363" name="Conception d'un fichier csv de Test" color="#8cb6ce" meeting="false" start="2025-06-12" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="115" type="1" difference="0" hardness="Strong"/>
+                </task>
+                <task id="115" uid="471af8e689bc43d794fdc5cd5ce916db" name="Développement de la fonctionnalité de lecture du fichier csv" color="#8cb6ce" meeting="false" start="2025-06-12" duration="2" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true"/>
+            </task>
+        </task>
+        <task id="17" uid="8e84f57765c7484c8edc983172b1519c" name="Préparation de la présentation" color="#8cb6ce" meeting="false" start="2025-06-05" duration="1" complete="100" thirdDate="2025-06-06" thirdDate-constraint="0" expand="true">
+            <task id="30" uid="d8cf35aa16fa4dd4b3c620c240fc2af7" name="Conception du diagramme de Gantt" color="#8cb6ce" meeting="false" start="2025-06-05" duration="1" complete="100" thirdDate="2025-06-06" thirdDate-constraint="0" expand="true"/>
+        </task>
+        <task id="3" uid="43c4f260769547438860841f98e26d7d" name="Développement Front-End et intéractions BDD" color="#8cb6ce" meeting="false" start="2025-06-10" duration="5" complete="30" expand="true">
+            <task id="34" uid="f9b0bffcf6e34e1c862099b63b607a04" name="Pages d'affichages et modification des objets de classes" color="#8cb6ce" meeting="false" start="2025-06-10" duration="1" complete="45" thirdDate="2025-06-06" thirdDate-constraint="0" expand="true">
+                <task id="91" uid="ca2c67a747034ebabfa55a1221036337" name="Développement pages de présentations (HTML)" color="#8cb6ce" meeting="false" start="2025-06-10" duration="1" complete="80" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true"/>
+                <task id="92" uid="f5608f3c817c442fad2762315f923c50" name="Développement pages de formulaires (HTML)" color="#8cb6ce" meeting="false" start="2025-06-10" duration="1" complete="10" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="81" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="35" uid="879ff503a34e4317a4ace41db7537347" name="Gestion BDD" color="#8cb6ce" meeting="false" start="2025-06-11" duration="3" complete="0" thirdDate="2025-06-09" thirdDate-constraint="0" expand="true">
+                <task id="81" uid="c42b7ba0ff894b24bce8e4269780876c" name="Fonctionnalités d'ajouts" color="#8cb6ce" meeting="false" start="2025-06-11" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="82" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="82" uid="a9fbfbb511094b8fb16c73c5aa0a9113" name="Fonctionnalités de modifications" color="#8cb6ce" meeting="false" start="2025-06-12" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="83" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="83" uid="0e03a8d5afde4464b6e51ca186390f37" name="Fonctionnalités de suppressions" color="#8cb6ce" meeting="false" start="2025-06-13" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="68" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="36" uid="14e4ef2ee7f14570a2c0f40ca6e03775" name="Feuilles de styles et formatage - CSS" color="#8cb6ce" meeting="false" start="2025-06-16" duration="1" complete="50" thirdDate="2025-06-10" thirdDate-constraint="0" expand="true">
+                <task id="68" uid="d26b39a46c594cb7a03c4ba11f9ec539" name="Développement de la feuille style.css" color="#8cb6ce" meeting="false" start="2025-06-16" duration="1" complete="100" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="69" type="1" difference="0" hardness="Strong"/>
+                </task>
+                <task id="69" uid="706bba069b4c48fca3891e003a377119" name="Développement de la feuille form.css" color="#8cb6ce" meeting="false" start="2025-06-16" duration="1" complete="50" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                    <depend id="78" type="1" difference="0" hardness="Strong"/>
+                </task>
+                <task id="78" uid="4319eaca7d0d4e89b61c8e0419a97cc2" name="Validation avec le Développement Back-end" color="#8cb6ce" meeting="false" start="2025-06-16" duration="1" complete="0" thirdDate="2025-06-10" thirdDate-constraint="0" expand="true">
+                    <depend id="97" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+        </task>
+        <task id="27" uid="3d203fee2d164300b6fe1a0c6bfdc407" name="Tests" meeting="false" start="2025-06-17" duration="1" complete="0" expand="true">
+            <task id="97" uid="7a9723f66c3f4219bb3b586e1f1d6b3e" name="Test final" color="#8cb6ce" meeting="false" start="2025-06-17" duration="1" complete="0" thirdDate="2025-06-04" thirdDate-constraint="0" expand="true">
+                <depend id="182" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="182" uid="ea9b99174f64464c903a04589d66f3f0" name="Fin de projet" color="#8cb6ce" meeting="true" start="2025-06-18" duration="0" complete="0" thirdDate="2025-06-02" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Soumaya" function="2" contacts="" phone=""/>
+        <resource id="1" name="Yoann" function="3" contacts="" phone=""/>
+        <resource id="3" name="Kenzy" function="1" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="59" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="66" resource-id="0" function="Default:0" responsible="true" load="30.0"/>
+        <allocation task-id="153" resource-id="0" function="Default:0" responsible="true" load="40.0"/>
+        <allocation task-id="97" resource-id="0" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="68" resource-id="0" function="Default:0" responsible="true" load="40.0"/>
+        <allocation task-id="69" resource-id="0" function="Default:0" responsible="true" load="40.0"/>
+        <allocation task-id="78" resource-id="0" function="Default:0" responsible="true" load="20.0"/>
+        <allocation task-id="91" resource-id="1" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="92" resource-id="1" function="Default:0" responsible="true" load="50.0"/>
+        <allocation task-id="81" resource-id="1" function="Default:0" responsible="true" load="40.0"/>
+        <allocation task-id="82" resource-id="1" function="Default:0" responsible="true" load="70.0"/>
+        <allocation task-id="83" resource-id="1" function="Default:0" responsible="true" load="40.0"/>
+        <allocation task-id="153" resource-id="1" function="Default:0" responsible="false" load="30.0"/>
+        <allocation task-id="97" resource-id="1" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="82" resource-id="1" function="Default:0" responsible="false" load="30.0"/>
+        <allocation task-id="78" resource-id="1" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="30" resource-id="3" function="Default:0" responsible="true" load="60.0"/>
+        <allocation task-id="113" resource-id="3" function="Default:0" responsible="true" load="15.0"/>
+        <allocation task-id="114" resource-id="3" function="Default:0" responsible="true" load="5.0"/>
+        <allocation task-id="115" resource-id="3" function="Default:0" responsible="true" load="35.0"/>
+        <allocation task-id="107" resource-id="3" function="Default:0" responsible="true" load="30.0"/>
+        <allocation task-id="108" resource-id="3" function="Default:0" responsible="true" load="30.0"/>
+        <allocation task-id="153" resource-id="3" function="Default:0" responsible="false" load="30.0"/>
+        <allocation task-id="97" resource-id="3" function="Default:0" responsible="false" load="90.0"/>
+        <allocation task-id="56" resource-id="3" function="Default:0" responsible="true" load="5.0"/>
+        <allocation task-id="278" resource-id="3" function="Default:0" responsible="true" load="70.0"/>
+        <allocation task-id="81" resource-id="3" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="83" resource-id="3" function="Default:0" responsible="false" load="40.0"/>
+        <allocation task-id="78" resource-id="3" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="82" resource-id="3" function="Default:0" responsible="false" load="40.0"/>
+        <allocation task-id="65" resource-id="3" function="1" responsible="true" load="10.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="1" name="DevOps, Coordination, Backend"/>
+        <role id="2" name="Lead FrontEnd, BackEnd"/>
+        <role id="3" name="Lead BackEnd, FrontEnd"/>
+    </roles>
+</project>
